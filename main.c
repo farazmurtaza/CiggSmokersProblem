@@ -1,3 +1,14 @@
+void *agent(void *pVoid)
+{
+
+    srand(time(NULL));
+    int *semNumber= (int*)(pVoid);
+    sem_wait(&agentReady);
+    
+
+}
+
+
 int main()
 {
 
