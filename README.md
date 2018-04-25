@@ -7,7 +7,7 @@ Okesh Kumar	k16-4026
 Syed Hamza	k16-4059
 
 The cigarette smokers’ problem is a concurrency problem in computer science, originally described in 1971 by Suhas Patil.
-In this problem The Agent represents the Operating System and the smokers represent the processes. In this problem The Agent (Operating System) should allocate resources to smokers (Processes) and at the same time avoid Deadlock.
+In this problem The Agent represents the Operating System, the smokers represent the processes/threads and ingredients (to make a cigarette) act as resources. In this problem The Agent (Operating System) should allocate resources to smokers (Processes) and at the same time avoid Deadlock.
 
 Problem Description:
 Assume a cigarette requires three ingredients to make and smoke: tobacco, paper, and matches. There are three smokers around a table, each of whom has an infinite supply of one of the three ingredients — one smoker has an infinite supply of tobacco, another has paper, and the third has matches.
