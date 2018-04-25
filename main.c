@@ -20,7 +20,7 @@ void *agent(void *pVoid)
                 break;
 
             }
-            else if(semWait[randInt]==0)
+            else if(semWait[randInt]!=0)
             {	sleep(1);
 		cout<<"\n\033[0;37mAgent throw\033[0m "<<agentsDraw[randInt]<<endl;
                 glob=randInt;
