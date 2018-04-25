@@ -130,9 +130,9 @@ int main()
     sem_init(&semaphoreSmokers[0],0,0);
     sem_init(&semaphoreSmokers[1],0,0);
     sem_init(&semaphoreSmokers[2],0,0);
-
+	//Agent Semaphore
     sem_init(&semaphoreAgents,0,1);
-
+	//Indicating Semaphores
     sem_init(&agentReady,0,0);
     sem_init(&smokerReady,0,0);
    
