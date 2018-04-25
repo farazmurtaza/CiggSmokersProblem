@@ -4,7 +4,18 @@ void *agent(void *pVoid)
     srand(time(NULL));
     int *semNumber= (int*)(pVoid);
     sem_wait(&agentReady);
-    
+    for (int i = 0; i < 21; ++i)
+    {
+        sem_wait(&semaphoreAgents);
+
+        while(true)
+        {
+
+            int randInt=(rand()%3);
+                usleep(rand()%4000);
+
+	}
+    }
 
 }
 
