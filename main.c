@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -8,6 +7,7 @@
 #include <iostream>
 
 using namespace std;
+
 sem_t semaphoreSmokers[3];
 sem_t semaphoreAgents;
 int glob=-1;
@@ -42,7 +42,7 @@ void *smoker(void *pVoid)
 
             usleep( rand() % 50000 );
             cout<<"\033[0;35m==> \033[0;33mSmoker1 is making a cigarette\033[0;0m"<<endl;
-		sleep(01);
+	    sleep(1);
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	
             semWait[0]--;
@@ -56,7 +56,7 @@ void *smoker(void *pVoid)
 
             usleep(rand()%50000);
             cout<<"\033[0;35m==> \033[0;33mSmoker2 is making a cigarette\033[0;0m"<<endl;
-		sleep(1);
+	    sleep(1);
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	    semWait[1]--;
             sem_post(&semaphoreAgents);
@@ -67,7 +67,7 @@ void *smoker(void *pVoid)
 
             usleep(rand()%50000);
             cout<<"\033[0;35m==> \033[0;33mSmoker3 is making a cigarette\033[0;0m"<<endl;
-		sleep(1);
+	    sleep(1);
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	    semWait[2]--;
             sem_post(&semaphoreAgents);
