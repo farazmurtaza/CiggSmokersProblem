@@ -1,3 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <unistd.h>
+#include <array>
+#include <iostream>
+
+using namespace std;
+sem_t semaphoreSmokers[3];
+sem_t semaphoreAgents;
+int glob=-1;
+
+int semWait[3];
+
+bool allSmoked=false;
+sem_t agentReady;
+sem_t smokerReady;
+
+
+int s=1;
+
+string agentsDraw[]={"paper & matches"," paper & tobbaco ","tobaco and matchess"};
+
 int main()
 {
 
