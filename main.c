@@ -6,14 +6,28 @@ void *agent(void *pVoid)
     sem_wait(&agentReady);
     for (int i = 0; i < 21; ++i)
     {
-        sem_wait(&semaphoreAgents);
+	    sem_wait(&semaphoreAgents);
 
         while(true)
         {
 
             int randInt=(rand()%3);
                 usleep(rand()%4000);
+	    if( semWait[0]==0 && semWait[1]==0 && semWait[2]==0 )
+            {
 
+                allSmoked = true;
+                break;
+
+            }
+            else if(semWait[randInt]==0)
+            {	sleep(1);
+		cout<<"\n\033[0;37mAgent throw\033[0m "<<agentsDraw[randInt]<<endl;
+                glob=randInt;
+                sem_post(&semaphoreSmokers[randInt]);
+                break;
+
+            }	
 	}
     }
 
