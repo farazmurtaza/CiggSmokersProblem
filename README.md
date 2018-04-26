@@ -29,7 +29,7 @@ Installaton Procedure:
 
 # Explanation
 
-Three semaphores are used to represent the three smokers; the agent increases the appropriate semaphore to signal that an item has been placed on the table. Also, each smoker has an associated semaphore that they use to signal to the agent that they are done smoking (in this case: ``` smokerReady ```); the agent has a semaphore (``` agentReady ```) that waits on each smoker's semaphore to let it know that it can place the new items on the table.
+Three semaphores are used to represent the three smokers; the agent (another semaphore) increases the appropriate semaphore to signal that an item has been placed on the table. Also, each smoker has an associated semaphore that they use to signal to the agent that they are done smoking (in this case: ``` smokerReady ```); the agent has a semaphore (``` agentReady ```) that waits on each smoker's semaphore to let it know that it can place the new items on the table. This cycle continues infinitely (for testing purposes, number of turns for each smoker is limited to 7, resulting 21 throws from the agent).
 
 # Glossary
 
@@ -47,19 +47,7 @@ pthread_join(): is also a function that shall suspend execution of the calling t
 pthread_join(pthread_t thread, void **value_ptr);
 ```
     
-    
 2. Semaphores:
-
-A semaphore is a variable or abstract data type used to control access to a common resource by multiple processes in a concurrent system such as a multitasking operating system.
-
-``` 
-sem_t: is the data-type for semaphores.
-
-sem_init(): is a function that is used to initialise the unnamed semaphore referred to by sem.
-sem_init(sem_t *sem, int pshared, unsigned int value);
-The sharing of the semaphore depends on the value of pshared, i.e. 0 for shared and 1 for unshared.
-
-sem_wait(): it decrements (locks) the semaphore pointed to by sem. If the semaphore's value is greater than zero, then the decrement proceeds, and the function returns, immediately. If the semaphore currently has the value zero, then the call blocks until either it becomes possible to perform the decrement (i.e., the semaphore value rises above zero), or a signal handler interrupts the call.
-
-sem_post(): The sem_post() function shall unlock the semaphore referenced by sem by performing a semaphore unlock operation on that semaphore. If the semaphore value resulting from this operation is positive, then no threads were blocked waiting for the semaphore to become unlocked; the semaphore value is simply incremented.
-```
+    ``` sem_t ```
+    ``` sem_init() ``` 
+    
