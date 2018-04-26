@@ -56,8 +56,8 @@ A semaphore is a variable or abstract data type used to control access to a comm
 sem_t: is the data-type for semaphores.
 
 sem_init(): is a function that is used to initialise the unnamed semaphore referred to by sem.
-    sem_init(sem_t *sem, int pshared, unsigned int value);
-    The sharing of the semaphore depends on the value of pshared, i.e. 0 for shared and 1 for unshared.
+sem_init(sem_t *sem, int pshared, unsigned int value);
+The sharing of the semaphore depends on the value of pshared, i.e. 0 for shared and 1 for unshared.
 
 sem_wait(): it decrements (locks) the semaphore pointed to by sem. If the semaphore's value is greater than zero, then the decrement proceeds, and the function returns, immediately. If the semaphore currently has the value zero, then the call blocks until either it becomes possible to perform the decrement (i.e., the semaphore value rises above zero), or a signal handler interrupts the call.
 
