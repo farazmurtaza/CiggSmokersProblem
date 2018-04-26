@@ -30,3 +30,19 @@ Installaton Procedure:
 # Explanation
 
 Three semaphores are used to represent the three smokers; the agent increases the appropriate semaphore to signal that an item has been placed on the table. Also, each smoker has an associated semaphore that they use to signal to the agent that they are done smoking (in this case: ``` smokerReady ```); the agent has a semaphore ( ``` agentReady ```) that waits on each smoker's semaphore to let it know that it can place the new items on the table.
+
+# Glossary
+
+1. Threads:
+
+A thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system. The implementation of threads and processes differs between operating systems, but in most cases a thread is a component of a process. Multiple threads can exist within one process, executing concurrently and sharing resources such as memory, while different processes do not share these resources. In particular, the threads of a process share its executable code and the values of its variables at any given time. 
+
+    ``` pthread_t ``` is the data-type for the threads being used.
+    ``` pthread_create() ``` 
+    ``` pthread_join() ```
+    
+    
+2. Semaphores:
+    ``` sem_t ```
+    ``` sem_init() ``` 
+    
