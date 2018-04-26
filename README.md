@@ -29,7 +29,11 @@ Installaton Procedure:
 
 # Explanation
 
-Three semaphores are used to represent the three smokers; the agent (another semaphore) increases the appropriate semaphore to signal that an item has been placed on the table. Also, each smoker has an associated semaphore that they use to signal to the agent that they are done smoking (in this case: ``` smokerReady ```); the agent has a semaphore (``` agentReady ```) that waits on each smoker's semaphore to let it know that it can place the new items on the table. This cycle continues infinitely (for testing purposes, number of turns for each smoker is limited to 7, resulting 21 throws from the agent).
+Three semaphores are used to represent the three smokers (``` semaphoreSmoker[3] ```); the agent (another semaphore:``` semaphoreAgent ``` ) increases the appropriate semaphore to signal that an item has been placed on the table. Also, each smoker has an associated semaphore that they use to signal to the agent that they are done smoking (in this case: ``` smokerReady ```); the agent has a semaphore (``` agentReady ```) that waits on each smoker's semaphore to let it know that it can place the new items on the table. This cycle continues infinitely (for testing purposes, number of turns for each smoker is limited to 7, resulting 21 throws from the agent).
+
+Additional Libraries Used: 
+<semaphore.h>
+<pthread.h>
 
 # Glossary
 
