@@ -80,7 +80,7 @@ int main()
    
 
 
-    pthread_t smoker1,smoker2,smoker3,agent1,pusher,agent2,agent3;
+    pthread_t smoker1,smoker2,smoker3,agent1,pusher;
     int * at = new int[1];
     at[0]=1;
 
