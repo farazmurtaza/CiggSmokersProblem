@@ -23,6 +23,64 @@ int s=1;
 
 string agentsDraw[]={"paper & matches"," paper & tobbaco ","tobaco and matchess"};
 
+void *smoker(void *pVoid)
+{
+    int *semNumber= (int*)(pVoid);
+
+    // i indicates the number of times per thread smoking will be done
+    for (int i = 0; i <7; ++i)
+    {
+
+        usleep( rand() % 50000 );
+        cout<<"Smoker "<<*semNumber<<" waiting for "<<agentsDraw[*semNumber-1]<<" "<<endl;
+        s++;
+        if ( s>3 )
+        sem_post(&smokerReady);
+
+        sem_wait(&semaphoreSmokers[(*semNumber-1)]);
+        if ( glob == 0 )
+        {
+
+            usleep( rand() % 50000 );
+            cout<<"\033[0;35m==> \033[0;33mSmoker1 is making a cigarette\033[0;0m"<<endl;
+		sleep(01);
+	    cout<<"\033[0;31mNow Smoking\033[0m \n";
+	
+            semWait[0]--;
+            sem_post(&semaphoreAgents);
+
+
+        }
+
+        else  if ( glob == 1 )
+        {
+
+            usleep(rand()%50000);
+            cout<<"\033[0;35m==> \033[0;33mSmoker2 is making a cigarette\033[0;0m"<<endl;
+		sleep(1);
+	    cout<<"\033[0;31mNow Smoking\033[0m \n";
+	    semWait[1]--;
+            sem_post(&semaphoreAgents);
+
+        }
+        else if ( glob == 2 )
+        {
+
+            usleep(rand()%50000);
+            cout<<"\033[0;35m==> \033[0;33mSmoker3 is making a cigarette\033[0;0m"<<endl;
+		sleep(1);
+	    cout<<"\033[0;31mNow Smoking\033[0m \n";
+	    semWait[2]--;
+            sem_post(&semaphoreAgents);
+
+        }
+
+    }
+		
+    pthread_exit(NULL);
+
+}
+
 void *agent(void *pVoid)
 {
 
