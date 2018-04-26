@@ -38,10 +38,13 @@ Three semaphores are used to represent the three smokers; the agent increases th
 A thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system. The implementation of threads and processes differs between operating systems, but in most cases a thread is a component of a process. Multiple threads can exist within one process, executing concurrently and sharing resources such as memory, while different processes do not share these resources. In particular, the threads of a process share its executable code and the values of its variables at any given time. 
 
 ```
-pthread_t: is the data-type for the threads being used that is included in the library pthread.h
-pthread_create():  is a function used to create threads. It requires four parameters: 
+pthread_t: is the data-type for the threads being used that is included in the library pthread.
+
+pthread_create(): is a function used to create threads. It requires four parameters: 
 pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
-pthread_join():
+
+pthread_join(): is also a function that shall suspend execution of the calling thread until the target thread terminates, unless the target thread has already terminated. This function requires two parameters:
+pthread_join(pthread_t thread, void **value_ptr);
 ```
     
 2. Semaphores:
