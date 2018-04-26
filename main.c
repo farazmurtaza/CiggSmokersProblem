@@ -107,7 +107,14 @@ void *agent(void *pVoid)
     }
 
 }
+void * func(void *pVoid)
+{
 
+    sem_wait( &smokerReady );
+
+    sem_post( &agentReady );
+
+}
 
 int main(void)
 {
