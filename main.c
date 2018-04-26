@@ -31,13 +31,13 @@ void *agent(void *pVoid)
     sem_wait(&agentReady);
     for (int i = 0; i < 21; ++i)
     {
-	    sem_wait(&semaphoreAgents);
+	sem_wait(&semaphoreAgents);
 
         while(true)
         {
 
             int randInt=(rand()%3);
-                usleep(rand()%4000);
+            usleep(rand()%4000);
 	    if( semWait[0]==0 && semWait[1]==0 && semWait[2]==0 )
             {
 
@@ -59,7 +59,7 @@ void *agent(void *pVoid)
 }
 
 
-int main()
+int main(void)
 {
 
     for (int i = 0; i < 3; ++i)
@@ -72,15 +72,16 @@ int main()
     sem_init(&semaphoreSmokers[0],0,0);
     sem_init(&semaphoreSmokers[1],0,0);
     sem_init(&semaphoreSmokers[2],0,0);
+	
 	//Agent Semaphore
     sem_init(&semaphoreAgents,0,1);
+	
 	//Indicating Semaphores
     sem_init(&agentReady,0,0);
     sem_init(&smokerReady,0,0);
    
-
-
     pthread_t smoker1,smoker2,smoker3,agent1,pusher;
+	
     int * at = new int[1];
     at[0]=1;
 
@@ -103,7 +104,6 @@ int main()
     pthread_join(smoker1,NULL);
     pthread_join(smoker2,NULL);
     pthread_join(smoker3,NULL);
-
-
+	
     return 0;
 }
