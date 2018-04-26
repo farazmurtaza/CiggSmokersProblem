@@ -8,16 +8,15 @@
 
 using namespace std;
 
-sem_t semaphoreSmokers[3];
-sem_t semaphoreAgents;
+sem_t semaphoreSmokers[3]; //Three semaphore for three smokers
+sem_t semaphoreAgents; //Agent semaphore
 int glob=-1;
 
-int semWait[3];
+int semWait[3]; //Keeping the count for the number of cigarettes smoked done by each smokers 
 
-bool allSmoked=false;
-sem_t agentReady;
-sem_t smokerReady;
-
+bool allSmoked=false; //Used to determine if all the smokers are done smoking
+sem_t agentReady; //Used to indicate when the agent is ready to complete his next turn
+sem_t smokerReady; //Used to indicate the agent that the smoker is waiting for the agent to throw the items
 
 int s=1;
 
@@ -30,7 +29,6 @@ void *smoker(void *pVoid)
     // i indicates the number of times per thread smoking will be done
     for (int i = 0; i <7; ++i)
     {
-
         usleep( rand() % 50000 );
         cout<<"Smoker "<<*semNumber<<" waiting for "<<agentsDraw[*semNumber-1]<<" "<<endl;
         s++;
@@ -43,7 +41,7 @@ void *smoker(void *pVoid)
 
             usleep( rand() % 50000 );
             cout<<"\033[0;35m==> \033[0;33mSmoker1 is making a cigarette\033[0;0m"<<endl;
-		sleep(01);
+	    sleep(01);
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	
             semWait[0]--;
@@ -61,7 +59,6 @@ void *smoker(void *pVoid)
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	    semWait[1]--;
             sem_post(&semaphoreAgents);
-
         }
         else if ( glob == 2 )
         {
@@ -72,13 +69,10 @@ void *smoker(void *pVoid)
 	    cout<<"\033[0;31mNow Smoking\033[0m \n";
 	    semWait[2]--;
             sem_post(&semaphoreAgents);
-
         }
-
     }
 		
     pthread_exit(NULL);
-
 }
 
 void *agent(void *pVoid)
@@ -98,10 +92,8 @@ void *agent(void *pVoid)
             usleep(rand()%4000);
 	    if( semWait[0]==0 && semWait[1]==0 && semWait[2]==0 )
             {
-
                 allSmoked = true;
                 break;
-
             }
             else if(semWait[randInt]!=0)
             {	sleep(1);
@@ -119,7 +111,6 @@ void *agent(void *pVoid)
 
 int main(void)
 {
-
     for (int i = 0; i < 3; ++i)
     {
         semWait[i]=7;
@@ -134,7 +125,7 @@ int main(void)
 	//Agent Semaphore
     sem_init(&semaphoreAgents,0,1);
 	
-	//Indicating Semaphores
+    //Indicating Semaphores
     sem_init(&agentReady,0,0);
     sem_init(&smokerReady,0,0);
    
